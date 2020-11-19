@@ -134,7 +134,7 @@ import {
     on
 } from '@taufik-nurrohman/hook';
 
-class Application {
+class Widget {
     constructor() {
         this.#data = [];
         this.fire = fire.bind(this);
@@ -163,21 +163,25 @@ class Application {
     }
 }
 
-const application = new Application;
+const widget = new Widget;
 
-application.on('create', () => {
+widget.on('create', () => {
     console.log('Created!');
 });
 
-application.on('destroy', () => {
+widget.on('destroy', () => {
     console.log('Destroyed!');
 });
 
-application.on('update', datum => {
+widget.on('update', datum => {
     console.log('Added ' + datum);
 });
 
-application.create([1, 2, 3]);
+widget.create([1, 2, 3]);
+widget.append(4).append(5).append(6);
 
-application.append(4).append(5).append(6);
+// `Created!`
+// `Added 4`
+// `Added 5`
+// `Added 6`
 ~~~
