@@ -96,7 +96,7 @@ console.log(hooks);
 // Remove all `window-resize` hooks
 off('window-resize');
 
-// Remove `onWindowResize` `window-resize` hook only
+// Remove `onWindowResize` hook from `window-resize` event
 off('window-resize', onWindowResize);
 ~~~
 
@@ -136,26 +136,30 @@ import {
 
 class Application {
     constructor() {
-        this.data = [];
+        this.#data = [];
         this.fire = fire.bind(this);
         this.hooks = hooks;
         this.off = off.bind(this);
         this.on = on.bind(this);
     }
-    append(data) {
-        this.data.push(data);
-        this.fire('update', [data]);
+    append(datum) {
+        this.#data.push(datum);
+        this.fire('update', [datum]);
+        return this;
     }
     create(data) {
-        this.data = data;
+        this.#data = data;
         this.fire('create');
+        return this;
     }
     destroy() {
         this.fire('destroy');
+        return this;
     }
-    prepend(data) {
-        this.data.unshift(data);
-        this.fire('update', [data]);
+    prepend(datum) {
+        this.#data.unshift(datum);
+        this.fire('update', [datum]);
+        return this;
     }
 }
 
@@ -169,12 +173,11 @@ application.on('destroy', () => {
     console.log('Destroyed!');
 });
 
-application.on('update', data => {
-    console.log('Added ' + data);
+application.on('update', datum => {
+    console.log('Added ' + datum);
 });
 
 application.create([1, 2, 3]);
-application.append(4);
-application.append(5);
-application.append(6);
+
+application.append(4).append(5).append(6);
 ~~~
