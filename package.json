@@ -1,6 +1,6 @@
 {
   "name": "@taufik-nurrohman/hook",
-  "description": "Simple JavaScript hook system.",
+  "description": "JavaScript hook system.",
   "version": "0.0.1",
   "main": "index.js",
   "exports": {

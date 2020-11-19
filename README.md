@@ -1,7 +1,7 @@
 Hook Utility
 ============
 
-Simple JavaScript hook system.
+JavaScript hook system.
 
 Usage
 -----
