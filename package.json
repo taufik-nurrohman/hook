@@ -1,0 +1,34 @@
+{
+  "name": "@taufik-nurrohman/hook",
+  "description": "Simple JavaScript hook system.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "index.mjs"
+  ],
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^3.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taufik-nurrohman/hook.git"
+  },
+  "keywords": [
+    "hook",
+    "utility"
+  ],
+  "author": "Taufik Nurrohman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taufik-nurrohman/hook/issues"
+  },
+  "homepage": "https://taufik-nurrohman.github.io"
+}
