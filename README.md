@@ -19,24 +19,7 @@ console.log(hooks);
 </script>
 ~~~
 
-### Browser Module
-
-~~~ html
-<script type="module">
-import {
-    hooks,
-    on
-} from './@taufik-nurrohman/hook/index.mjs';
-
-on('click', () => console.log('click 1'));
-on('click', () => console.log('click 2'));
-on('focus', () => console.log('focus 1'));
-
-console.log(hooks);
-</script>
-~~~
-
-### CommonJS Module
+### CommonJS
 
 ~~~ js
 const {
@@ -51,7 +34,7 @@ on('focus', () => console.log('focus 1'));
 console.log(hooks);
 ~~~
 
-### ECMAScript Module
+### ECMAScript
 
 ~~~ js
 import {

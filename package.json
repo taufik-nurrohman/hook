@@ -1,7 +1,7 @@
 {
   "name": "@taufik-nurrohman/hook",
   "description": "JavaScript hook system.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "exports": {
     "import": "./index.mjs",

@@ -23,7 +23,6 @@
                         hooks[event].splice(i, 1);
                     }
                 });
-                // Clean-up empty hook(s)
                 if (0 === hooks[event].length) {
                     delete hooks[event];
                 }
