@@ -1,46 +1,47 @@
 import {isSet} from '@taufik-nurrohman/is';
 
-export const hooks = {};
-
-export function fire(event, data) {
+export function fire(name, data) {
     const $ = this;
-    if (!isSet(hooks[event])) {
+    if (!isSet(hooks[name])) {
         return $;
     }
-    hooks[event].forEach(hook => hook.apply($, data));
+    hooks[name].forEach(then => then.apply($, data));
     return $;
 }
 
-export function off(event, fn) {
+export const hooks = {};
+
+export function off(name, then) {
     const $ = this;
-    if (!isSet(event)) {
+    if (!isSet(name)) {
         return (hooks = {}), $;
     }
-    if (isSet(hooks[event])) {
-        if (isSet(fn)) {
-            hooks[event].forEach((hook, i) => {
-                if (fn === hook) {
-                    hooks[event].splice(i, 1);
+    if (isSet(hooks[name])) {
+        if (isSet(then)) {
+            for (let i = 0, j = hooks[name].length; i < j; ++i) {
+                if (then === hooks[name][i]) {
+                    hooks[name].splice(i, 1);
+                    break;
                 }
-            });
+            }
             // Clean-up empty hook(s)
-            if (0 === hooks[event].length) {
-                delete hooks[event];
+            if (0 === j) {
+                delete hooks[name];
             }
         } else {
-            delete hooks[event];
+            delete hooks[name];
         }
     }
     return $;
 }
 
-export function on(event, fn) {
+export function on(name, then) {
     const $ = this;
-    if (!isSet(hooks[event])) {
-        hooks[event] = [];
+    if (!isSet(hooks[name])) {
+        hooks[name] = [];
     }
-    if (isSet(fn)) {
-        hooks[event].push(fn);
+    if (isSet(then)) {
+        hooks[name].push(then);
     }
     return $;
 }

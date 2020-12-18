@@ -6,26 +6,10 @@ JavaScript hook system.
 Usage
 -----
 
-### Browser
-
-~~~ html
-<script src="./@taufik-nurrohman/hook/index.js"></script>
-<script>
-on('click', () => console.log('click 1'));
-on('click', () => console.log('click 2'));
-on('focus', () => console.log('focus 1'));
-
-console.log(hooks);
-</script>
-~~~
-
 ### CommonJS
 
 ~~~ js
-const {
-    hooks,
-    on
-} = require('@taufik-nurrohman/hook');
+const {hooks, on} = require('@taufik-nurrohman/hook');
 
 on('click', () => console.log('click 1'));
 on('click', () => console.log('click 2'));
@@ -37,10 +21,7 @@ console.log(hooks);
 ### ECMAScript
 
 ~~~ js
-import {
-    hooks,
-    on
-} from '@taufik-nurrohman/hook';
+import {hooks, on} from '@taufik-nurrohman/hook';
 
 on('click', () => console.log('click 1'));
 on('click', () => console.log('click 2'));
@@ -54,7 +35,7 @@ Methods
 
 ### fire(event, data)
 
-Fire a custom event.
+Fire a hook.
 
 ~~~ js
 window.addEventListener('resize', () => {
@@ -73,34 +54,47 @@ Return the added hooks.
 console.log(hooks);
 ~~~
 
-### off(event, fn)
+### off(event, then)
+
+Remove a hook.
+
+Remove all `window-resize` hooks.
 
 ~~~ js
-// Remove all `window-resize` hooks
 off('window-resize');
+~~~
 
-// Remove `onWindowResize` hook from `window-resize` event
+Remove `onWindowResize` hook from `window-resize` event.
+
+~~~ js
 off('window-resize', onWindowResize);
 ~~~
 
-### on(event, fn)
+### on(event, then)
+
+Add a hook.
+
+Add `window-resize` hook anonymously.
 
 ~~~ js
-// Add `window-resize` hook anonymously
 on('window-resize', data => {
     console.log([
         data.height,
         data.width
     ]);
 });
+~~~
 
-// Add `window-resize` hook with named function
+Add `window-resize` hook with named function.
+
+~~~ js
 function onWindowResize(data) {
     console.log([
         data.height,
         data.width
     ]);
 }
+
 on('window-resize', onWindowResize);
 ~~~
 
@@ -110,12 +104,7 @@ Extends
 Extend the hook system to an application.
 
 ~~~ js
-import {
-    fire,
-    hooks,
-    off,
-    on
-} from '@taufik-nurrohman/hook';
+import {fire, hooks, off, on} from '@taufik-nurrohman/hook';
 
 class Widget {
     constructor() {

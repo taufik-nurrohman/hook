@@ -1,8 +1,13 @@
 {
-  "name": "@taufik-nurrohman/hook",
+  "author": "Taufik Nurrohman",
+  "bugs": "https://github.com/taufik-nurrohman/hook/issues",
+  "dependencies": {
+    "@taufik-nurrohman/is": ">=0.0.1"
+  },
   "description": "JavaScript hook system.",
-  "version": "0.0.2",
-  "main": "index.js",
+  "devDependencies": {
+    "ava": "^3.13.0"
+  },
   "exports": {
     "import": "./index.mjs",
     "require": "./index.js"
@@ -11,27 +16,20 @@
     "index.js",
     "index.mjs"
   ],
-  "scripts": {
-    "test": "ava"
-  },
-  "dependencies": {
-    "@taufik-nurrohman/is": ">=0.0.1"
-  },
-  "devDependencies": {
-    "ava": "^3.13.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/taufik-nurrohman/hook.git"
-  },
+  "homepage": "https://taufik-nurrohman.js.org",
   "keywords": [
     "hook",
     "utility"
   ],
-  "author": "Taufik Nurrohman",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/taufik-nurrohman/hook/issues"
+  "main": "index.mjs",
+  "name": "@taufik-nurrohman/hook",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taufik-nurrohman/hook.git"
   },
-  "homepage": "https://taufik-nurrohman.github.io"
+  "scripts": {
+    "test": "ava test.mjs"
+  },
+  "version": "0.0.3"
 }

@@ -1,49 +1,54 @@
-// This file is in sync with `index.mjs` file to enable CommonJS module loader feature.
-// If you want to add/remove something here, make sure to do it in `index.mjs` file first.
-($$ => {
-    const {isSet} = require('@taufik-nurrohman/is');
-    const hooks = {};
-    function fire(event, data) {
-        const $ = this;
-        if (!isSet(hooks[event])) {
-            return $;
-        }
-        hooks[event].forEach(hook => hook.apply($, data));
+const {isSet} = require('@taufik-nurrohman/is');
+
+function fire(name, data) {
+    const $ = this;
+    if (!isSet(hooks[name])) {
         return $;
     }
-    function off(event, fn) {
-        const $ = this;
-        if (!isSet(event)) {
-            return (hooks = {}), $;
-        }
-        if (isSet(hooks[event])) {
-            if (isSet(fn)) {
-                hooks[event].forEach((hook, i) => {
-                    if (fn === hook) {
-                        hooks[event].splice(i, 1);
-                    }
-                });
-                if (0 === hooks[event].length) {
-                    delete hooks[event];
+    hooks[name].forEach(then => then.apply($, data));
+    return $;
+}
+
+const hooks = {};
+
+function off(name, then) {
+    const $ = this;
+    if (!isSet(name)) {
+        return (hooks = {}), $;
+    }
+    if (isSet(hooks[name])) {
+        if (isSet(then)) {
+            for (let i = 0, j = hooks[name].length; i < j; ++i) {
+                if (then === hooks[name][i]) {
+                    hooks[name].splice(i, 1);
+                    break;
                 }
-            } else {
-                delete hooks[event];
             }
+            // Clean-up empty hook(s)
+            if (0 === j) {
+                delete hooks[name];
+            }
+        } else {
+            delete hooks[name];
         }
-        return $;
     }
-    function on(event, fn) {
-        const $ = this;
-        if (!isSet(hooks[event])) {
-            hooks[event] = [];
-        }
-        if (isSet(fn)) {
-            hooks[event].push(fn);
-        }
-        return $;
+    return $;
+}
+
+function on(name, then) {
+    const $ = this;
+    if (!isSet(hooks[name])) {
+        hooks[name] = [];
     }
-    $$.fire = fire;
-    $$.hooks = hooks;
-    $$.off = off;
-    $$.on = on;
-})(exports || window || {});
+    if (isSet(then)) {
+        hooks[name].push(then);
+    }
+    return $;
+}
+
+Object.assign(exports || {}, {
+    fire,
+    hooks,
+    off,
+    on
+});
