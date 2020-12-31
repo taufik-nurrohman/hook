@@ -9,7 +9,7 @@ export function fire(name, data) {
     return $;
 }
 
-export const hooks = {};
+export let hooks = {};
 
 export function off(name, then) {
     const $ = this;

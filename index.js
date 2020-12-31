@@ -9,7 +9,7 @@ function fire(name, data) {
     return $;
 }
 
-const hooks = {};
+let hooks = {};
 
 function off(name, then) {
     const $ = this;
