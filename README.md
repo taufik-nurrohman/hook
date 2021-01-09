@@ -109,11 +109,8 @@ import {context} from '@taufik-nurrohman/hook';
 class Widget {
     constructor() {
         this.#data = [];
-        let $ = context(this);
-        this.fire = $.fire;
-        this.hooks = $.hooks;
-        this.off = $.off;
-        this.on = $.on;
+        // This will create `fire`, `hooks`, `off` and `on` property
+        context(this);
     }
     append(datum) {
         this.#data.push(datum);
