@@ -104,15 +104,16 @@ Extends
 Extend the hook system to an application.
 
 ~~~ js
-import {fire, hooks, off, on} from '@taufik-nurrohman/hook';
+import {context} from '@taufik-nurrohman/hook';
 
 class Widget {
     constructor() {
         this.#data = [];
-        this.fire = fire.bind(this);
-        this.hooks = hooks;
-        this.off = off.bind(this);
-        this.on = on.bind(this);
+        let $ = context(this);
+        this.fire = $.fire;
+        this.hooks = $.hooks;
+        this.off = $.off;
+        this.on = $.on;
     }
     append(datum) {
         this.#data.push(datum);
