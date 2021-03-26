@@ -9,75 +9,94 @@ Usage
 ### CommonJS
 
 ~~~ js
-const {hooks, on} = require('@taufik-nurrohman/hook');
+const {hook} = require('@taufik-nurrohman/hook');
 
-on('click', () => console.log('click 1'));
-on('click', () => console.log('click 2'));
-on('focus', () => console.log('focus 1'));
+hook(window);
 
-console.log(hooks);
+window.on('click', () => console.log('click 1'));
+window.on('click', () => console.log('click 2'));
+window.on('focus', () => console.log('focus 1'));
+
+console.log(window.hooks);
 ~~~
 
 ### ECMAScript
 
 ~~~ js
-import {hooks, on} from '@taufik-nurrohman/hook';
+import {hook} from '@taufik-nurrohman/hook';
 
-on('click', () => console.log('click 1'));
-on('click', () => console.log('click 2'));
-on('focus', () => console.log('focus 1'));
+hook(window);
 
-console.log(hooks);
+window.on('click', () => console.log('click 1'));
+window.on('click', () => console.log('click 2'));
+window.on('focus', () => console.log('focus 1'));
+
+console.log(window.hooks);
 ~~~
 
 Methods
 -------
 
-### fire(event, data)
+### hook(object)
 
-Fire a hook.
+Create hook properties to an object.
 
 ~~~ js
+hook(window);
+
 window.addEventListener('resize', () => {
-    fire('window-resize', [{
+    window.fire('window-resize', [{
         height: window.innerHeight,
         width: window.innerWidth
     }]);
 });
 ~~~
 
-### hooks
+#### object.fire(event, data)
+
+Fire a hook.
+
+~~~ js
+window.addEventListener('resize', () => {
+    window.fire('window-resize', [{
+        height: window.innerHeight,
+        width: window.innerWidth
+    }]);
+});
+~~~
+
+#### object.hooks
 
 Return the added hooks.
 
 ~~~ js
-console.log(hooks);
+console.log(window.hooks);
 ~~~
 
-### off(event, then)
+#### object.off(event, then)
 
 Remove a hook.
 
 Remove all `window-resize` hooks.
 
 ~~~ js
-off('window-resize');
+window.off('window-resize');
 ~~~
 
 Remove `onWindowResize` hook from `window-resize` event.
 
 ~~~ js
-off('window-resize', onWindowResize);
+window.off('window-resize', onWindowResize);
 ~~~
 
-### on(event, then)
+#### object.on(event, then)
 
 Add a hook.
 
 Add `window-resize` hook anonymously.
 
 ~~~ js
-on('window-resize', data => {
+window.on('window-resize', data => {
     console.log([
         data.height,
         data.width
@@ -95,7 +114,7 @@ function onWindowResize(data) {
     ]);
 }
 
-on('window-resize', onWindowResize);
+window.on('window-resize', onWindowResize);
 ~~~
 
 Extends
@@ -104,13 +123,13 @@ Extends
 Extend the hook system to an application.
 
 ~~~ js
-import {context} from '@taufik-nurrohman/hook';
+import {hook} from '@taufik-nurrohman/hook';
 
 class Widget {
     constructor() {
         this.#data = [];
-        // This will create `fire`, `hooks`, `off` and `on` property
-        context(this);
+        // This will create `fire`, `hooks`, `off` and `on` properties
+        hook(this);
     }
     append(datum) {
         this.#data.push(datum);

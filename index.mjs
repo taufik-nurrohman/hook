@@ -1,6 +1,6 @@
 import {isSet} from '@taufik-nurrohman/is';
 
-export function context($) {
+export function hook($) {
     let hooks = {};
     function fire(name, data) {
         if (!isSet(hooks[name])) {
@@ -46,11 +46,3 @@ export function context($) {
     $.on = on;
     return $;
 }
-
-const $ = context({});
-
-export const fire = $.fire;
-export const off = $.off;
-export const on = $.on;
-
-export let hooks = $.hooks;

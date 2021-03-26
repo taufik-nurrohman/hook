@@ -1,6 +1,6 @@
 const {isSet} = require('@taufik-nurrohman/is');
 
-function context($) {
+function hook($) {
     let hooks = {};
     function fire(name, data) {
         if (!isSet(hooks[name])) {
@@ -47,4 +47,4 @@ function context($) {
     return $;
 }
 
-Object.assign(exports || {}, context({}));
+Object.assign(exports || {}, {hook});
