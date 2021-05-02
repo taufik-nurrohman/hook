@@ -47,4 +47,4 @@ function hook($) {
     return $;
 }
 
-Object.assign(exports || {}, {hook});
+Object.assign(exports, {hook});
