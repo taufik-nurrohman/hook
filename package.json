@@ -2,11 +2,11 @@
   "author": "Taufik Nurrohman",
   "bugs": "https://github.com/taufik-nurrohman/hook/issues",
   "dependencies": {
-    "@taufik-nurrohman/is": "^0.1.2"
+    "@taufik-nurrohman/is": "*"
   },
   "description": "JavaScript hook system.",
   "devDependencies": {
-    "ava": "^3.15.0"
+    "ava": "^4.3.0"
   },
   "exports": {
     "import": "./index.mjs",
@@ -31,5 +31,5 @@
   "scripts": {
     "test": "ava test.mjs"
   },
-  "version": "0.1.2"
+  "version": "1.0.0"
 }
