@@ -15,15 +15,17 @@ export function hook($) {
         }
         if (isSet(hooks[name])) {
             if (isSet(then)) {
-                for (let i = 0, j = hooks[name].length; i < j; ++i) {
-                    if (then === hooks[name][i]) {
-                        hooks[name].splice(i, 1);
-                        break;
-                    }
-                }
+                let j = hooks[name].length;
                 // Clean-up empty hook(s)
                 if (0 === j) {
                     delete hooks[name];
+                } else {
+                    for (let i = 0; i < j; ++i) {
+                        if (then === hooks[name][i]) {
+                            hooks[name].splice(i, 1);
+                            break;
+                        }
+                    }
                 }
             } else {
                 delete hooks[name];
