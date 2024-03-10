@@ -42,10 +42,11 @@ function hook($) {
         }
         return $;
     }
+    let proto = $.constructor.prototype;
     $.hooks = hooks;
-    $.fire = fire;
-    $.off = off;
-    $.on = on;
+    proto.fire = fire;
+    proto.off = off;
+    proto.on = on;
     return $;
 }
 
