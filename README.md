@@ -129,7 +129,7 @@ class Widget {
     constructor() {
         this.#data = [];
         // This will create `fire`, `hooks`, `off`, and `on` properties
-        hook(this);
+        hook(this, this.constructor.prototype);
     }
     append(datum) {
         this.#data.push(datum);

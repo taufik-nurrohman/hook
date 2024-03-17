@@ -1,8 +1,8 @@
 import {isSet} from '@taufik-nurrohman/is';
 
-export function hook($) {
-    const constructor = $.constructor.prototype;
-    constructor.fire = function (name, data) {
+export function hook($, $$) {
+    $$ = $$ || $;
+    $$.fire = function (name, data) {
         let $ = this,
             {hooks} = $;
         if (!isSet(hooks[name])) {
@@ -11,7 +11,7 @@ export function hook($) {
         hooks[name].forEach(then => then.apply($, data));
         return $;
     };
-    constructor.off = function (name, then) {
+    $$.off = function (name, then) {
         let $ = this,
             {hooks} = $;
         if (!isSet(name)) {
@@ -37,7 +37,7 @@ export function hook($) {
         }
         return $;
     };
-    constructor.on = function (name, then) {
+    $$.on = function (name, then) {
         let $ = this,
             {hooks} = $;
         if (!isSet(hooks[name])) {

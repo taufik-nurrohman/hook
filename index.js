@@ -1,8 +1,8 @@
 const {isSet} = require('@taufik-nurrohman/is');
 
-function hook($) {
-    const constructor = $.constructor.prototype;
-    constructor.fire = function (name, data) {
+function hook($, $$) {
+    $$ = $$ || $;
+    $$.fire = function (name, data) {
         let $ = this,
             {hooks} = $;
         if (!isSet(hooks[name])) {
@@ -11,7 +11,7 @@ function hook($) {
         hooks[name].forEach(then => then.apply($, data));
         return $;
     };
-    constructor.off = function (name, then) {
+    $$.off = function (name, then) {
         let $ = this,
             {hooks} = $;
         if (!isSet(name)) {
@@ -37,7 +37,7 @@ function hook($) {
         }
         return $;
     };
-    constructor.on = function (name, then) {
+    $$.on = function (name, then) {
         let $ = this,
             {hooks} = $;
         if (!isSet(hooks[name])) {
