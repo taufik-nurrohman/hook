@@ -37,7 +37,7 @@ console.log(window.hooks);
 Methods
 -------
 
-### hook(object, constructor = object)
+### hook(object, objectPrototype)
 
 Create hook properties to an object.
 
