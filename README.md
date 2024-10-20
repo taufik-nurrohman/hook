@@ -37,7 +37,7 @@ console.log(window.hooks);
 Methods
 -------
 
-### hook(object)
+### hook(object, constructor = object)
 
 Create hook properties to an object.
 
@@ -52,7 +52,7 @@ window.addEventListener('resize', () => {
 });
 ~~~
 
-#### object.fire(event, data)
+#### object.fire(event, data, that)
 
 Fire a hook.
 
@@ -63,6 +63,15 @@ window.addEventListener('resize', () => {
         width: window.innerWidth
     }]);
 });
+~~~
+
+~~~ js
+window.on('test', function (a, b, c) {
+    console.log(this); // Returns `Set [1, 2, 3]`
+    console.log({a, b, c}); // Returns `{ a: 1, b: 2, c: 3 }`
+});
+
+window.fire('test', [1, 2, 3], new Set([1, 2, 3]));
 ~~~
 
 #### object.hooks

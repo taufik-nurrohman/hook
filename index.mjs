@@ -2,49 +2,49 @@ import {isSet} from '@taufik-nurrohman/is';
 
 export function hook($, $$) {
     $$ = $$ || $;
-    $$.fire = function (name, data) {
+    $$.fire = function (event, data, that) {
         let $ = this,
             {hooks} = $;
-        if (!isSet(hooks[name])) {
+        if (!isSet(hooks[event])) {
             return $;
         }
-        hooks[name].forEach(then => then.apply($, data));
+        hooks[event].forEach(then => then.apply(that || $, data));
         return $;
     };
-    $$.off = function (name, then) {
+    $$.off = function (event, then) {
         let $ = this,
             {hooks} = $;
-        if (!isSet(name)) {
+        if (!isSet(event)) {
             return (hooks = {}), $;
         }
-        if (isSet(hooks[name])) {
+        if (isSet(hooks[event])) {
             if (isSet(then)) {
-                let j = hooks[name].length;
+                let j = hooks[event].length;
                 // Clean-up empty hook(s)
                 if (0 === j) {
-                    delete hooks[name];
+                    delete hooks[event];
                 } else {
                     for (let i = 0; i < j; ++i) {
-                        if (then === hooks[name][i]) {
-                            hooks[name].splice(i, 1);
+                        if (then === hooks[event][i]) {
+                            hooks[event].splice(i, 1);
                             break;
                         }
                     }
                 }
             } else {
-                delete hooks[name];
+                delete hooks[event];
             }
         }
         return $;
     };
-    $$.on = function (name, then) {
+    $$.on = function (event, then) {
         let $ = this,
             {hooks} = $;
-        if (!isSet(hooks[name])) {
-            hooks[name] = [];
+        if (!isSet(hooks[event])) {
+            hooks[event] = [];
         }
         if (isSet(then)) {
-            hooks[name].push(then);
+            hooks[event].push(then);
         }
         return $;
     };
