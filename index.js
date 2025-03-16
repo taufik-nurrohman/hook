@@ -1,4 +1,6 @@
+const {forEachArray} = require('@taufik-nurrohman/f');
 const {isSet} = require('@taufik-nurrohman/is');
+const {toCount} = require('@taufik-nurrohman/to');
 
 function hook($, $$) {
     $$ = $$ || $;
@@ -8,8 +10,9 @@ function hook($, $$) {
         if (!isSet(hooks[event])) {
             return $;
         }
-        hooks[event].forEach(then => then.apply(that || $, data));
-        return $;
+        return forEachArray(hooks[event], v => {
+            v.apply(that || $, data);
+        }), $;
     };
     $$.off = function (event, then) {
         let $ = this,
@@ -19,7 +22,7 @@ function hook($, $$) {
         }
         if (isSet(hooks[event])) {
             if (isSet(then)) {
-                let j = hooks[event].length;
+                let j = toCount(hooks[event]);
                 // Clean-up empty hook(s)
                 if (0 === j) {
                     delete hooks[event];

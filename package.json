@@ -2,7 +2,9 @@
   "author": "Taufik Nurrohman",
   "bugs": "https://github.com/taufik-nurrohman/hook/issues",
   "dependencies": {
-    "@taufik-nurrohman/is": "*"
+    "@taufik-nurrohman/f": "*",
+    "@taufik-nurrohman/is": "*",
+    "@taufik-nurrohman/to": "*"
   },
   "description": "JavaScript hook system.",
   "exports": {
@@ -25,5 +27,5 @@
     "type": "git",
     "url": "git+https://github.com/taufik-nurrohman/hook.git"
   },
-  "version": "1.2.0"
+  "version": "1.2.1"
 }

@@ -137,7 +137,7 @@ import {hook} from '@taufik-nurrohman/hook';
 class Widget {
     constructor() {
         this.#data = [];
-        // This will create `fire`, `hooks`, `off`, and `on` properties
+        // This will create `fire()`, `off()`, and `on()` methods, and a `hooks` property
         hook(this, this.constructor.prototype);
     }
     append(datum) {
