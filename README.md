@@ -82,7 +82,7 @@ Return the added hooks.
 console.log(window.hooks);
 ~~~
 
-#### object.off(event, then)
+#### object.off(event, task)
 
 Remove a hook.
 
@@ -98,7 +98,7 @@ Remove `onWindowResize` hook from `window-resize` event.
 window.off('window-resize', onWindowResize);
 ~~~
 
-#### object.on(event, then)
+#### object.on(event, task)
 
 Add a hook.
 

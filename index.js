@@ -14,21 +14,21 @@ function hook($, $$) {
             v.apply(that || $, data);
         }), $;
     };
-    $$.off = function (event, then) {
+    $$.off = function (event, task) {
         let $ = this,
             {hooks} = $;
         if (!isSet(event)) {
             return (hooks = {}), $;
         }
         if (isSet(hooks[event])) {
-            if (isSet(then)) {
+            if (isSet(task)) {
                 let j = toCount(hooks[event]);
                 // Clean-up empty hook(s)
                 if (0 === j) {
                     delete hooks[event];
                 } else {
                     for (let i = 0; i < j; ++i) {
-                        if (then === hooks[event][i]) {
+                        if (task === hooks[event][i]) {
                             hooks[event].splice(i, 1);
                             break;
                         }
@@ -40,14 +40,14 @@ function hook($, $$) {
         }
         return $;
     };
-    $$.on = function (event, then) {
+    $$.on = function (event, task) {
         let $ = this,
             {hooks} = $;
         if (!isSet(hooks[event])) {
             hooks[event] = [];
         }
-        if (isSet(then)) {
-            hooks[event].push(then);
+        if (isSet(task)) {
+            hooks[event].push(task);
         }
         return $;
     };
